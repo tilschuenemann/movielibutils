@@ -1,0 +1,26 @@
+Package: movielibutils
+Type: Package
+Title: Utilities for Fetching and Analyzing Hard Drive Movies
+Version: 0.1.0
+Author: Til Schünemann
+Maintainer: Til Schünemann <yourself@somewhere.net>
+Description: Fetch TMDB data for moivs on your hard drive. Get all available metadata from runtime to cast and crew for your movies.
+Imports:
+    data.table,
+    dplyr,
+    httr,
+    jsonlite,
+    progress,
+    stringr,
+    tidyselect,
+    rlang
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Suggests: 
+    rmarkdown,
+    knitr,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3

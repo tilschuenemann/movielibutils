@@ -1,0 +1,60 @@
+---
+title: "movielibutils"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{movielibutils}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(movielibutils)
+```
+
+## Introduction
+
+This package was created to help users fetch metadata about movies on their harddrive using the TMDB api.
+
+These function are included in the package:
+
+|function|use case|
+|:---|:---|
+|extract_name||
+|get_id||
+|get_credits||
+|get_details||
+|get_disc_movies||
+|details_list||
+|id_list||
+|get_genres||
+
+## Rough Workflow
+
+This package reads your movie folder and tries to get a TMDB id for each. For each TMDB id the script fetches movie metadata, cast and crew and creates one big data.table for you to explore.
+
+## extract_name(directory_name, convention)
+
+This function extracts metadata (title, year, opt. subtitles) according to the chosen convention into a dataframe and returns it. This is only applicable for one directory name. If you want to use this with an entire sub-directory, see **get_disc_movies**.
+
+## get_disc_movies(working_directory, convention)
+
+Uses extract_name on every sub-directory of the supplied working directory and returns a dataframe with directory name, year and title.
+
+## get_id(title, year, api_key)
+
+Looks up the supplied movie **TMDB ID** using the TMDB API. Supply year for more precise results - otherwise year = NULL is also ok.
+
+get_id returns the most popular TMDB ID if there are more results.
+
+## id_list(title_col, year_col, id_col, api_key)
+
+Looks up TMDB IDs using get_id and add an identifier (id_col) for easier joins later on.
+
+You can use get_disc_movies to extract sufficient metadata to use id_list.
