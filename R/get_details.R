@@ -18,7 +18,7 @@
 #' }
 get_details <- function(tmdb_id, api_key) {
   # debugging
-  # tmdb_id = 704
+  #   tmdb_id = 704
 
   url <- paste0(
     "https://api.themoviedb.org/3/movie/",
@@ -44,6 +44,8 @@ get_details <- function(tmdb_id, api_key) {
     as.data.frame()
 
   # type conversion
+  # the reason why the columns get probed are that they are not always existent
+  #   in the API response
   to_int <-
     c(
       "budget",
