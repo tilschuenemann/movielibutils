@@ -29,12 +29,8 @@ extract_title_data <- function(directory_name, convention) {
   }
 
   # debugging
-  # directory_name = "1999 - The Matrix"
-  # convention = 1
-
-  # TODO tests: try catch block for invalid names
-  #  " (1999)"
-  #  " (321)" ?
+  #   directory_name = "1999 - The Matrix"
+  #   convention = 1
 
   if (convention == 1 || convention == 2) {
     year <- str_extract(directory_name, pattern = "[:digit:]{4}")
@@ -72,6 +68,9 @@ extract_title_data <- function(directory_name, convention) {
       subtitle = subtitle
     )
   }
+
+  # TODO
+  #   if title, year and potentially subtitles get no matches, insert NA
 
   return(dir_df)
 }
