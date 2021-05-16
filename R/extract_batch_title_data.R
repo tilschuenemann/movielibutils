@@ -42,7 +42,7 @@ extract_batch_title_data <- function(movie_directory, convention) {
 
   disc_db <- NULL
 
-  print("reading wd folder")
+  print("reading movie directory")
 
   for (i in 1:j) {
     db_entry <- cbind(
