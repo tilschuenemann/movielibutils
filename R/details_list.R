@@ -23,7 +23,6 @@
 #' }
 #'
 details_list <- function(id_list, api_key) {
-
   if (is.data.frame(id_list) && ncol(id_list) > 1) {
     stop("please specify which column to read names from")
   }

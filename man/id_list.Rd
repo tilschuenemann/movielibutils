@@ -30,6 +30,4 @@ id_col = c(1,2))
 
 id_list(df$title_col,df$year_col,df$id_col, api_key)
 }
-
-
 }

@@ -15,25 +15,24 @@
 #'
 #' @examples
 #' \dontrun{
-#' id_list("The Matrix",1999,1, api_key)
+#' id_list("The Matrix", 1999, 1, api_key)
 #'
-#' df <- dataframe(title_col = c("The Matrix","The Matrix Reloaded",year_col = c(1999,2003),
-#' id_col = c(1,2))
+#' df <- dataframe(title_col = c("The Matrix", "The Matrix Reloaded"), year_col = c(1999, 2003), id_col = c(1, 2))
 #'
-#' id_list(df$title_col,df$year_col,df$id_col, api_key)
+#' id_list(df$title_col, df$year_col, df$id_col, api_key)
 #' }
 id_list <- function(title_col, year_col, id_col, api_key) {
   # TODO check for empty or null columns
-  if(length(title_col)!=length(year_col) ||
-     length(title_col)!=length(id_col)){
+  if (length(title_col) != length(year_col) ||
+    length(title_col) != length(id_col)) {
     stop("vector lengths differ")
   }
 
   # if dataframes are passed as arguments with no specified column
   #   and more than one definite column, the program is stopped
-  if(is.data.frame(title_col)&&ncol(title_col)!=1 ||
-     is.data.frame(year_col)&&ncol(year_col)!=1 ||
-     is.data.frame(id_col)&&ncol(id_col)!=1){
+  if (is.data.frame(title_col) && ncol(title_col) != 1 ||
+    is.data.frame(year_col) && ncol(year_col) != 1 ||
+    is.data.frame(id_col) && ncol(id_col) != 1) {
     stop("supplied dataframes have more than one column / no column specified")
   }
 
