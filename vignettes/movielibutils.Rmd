@@ -22,20 +22,6 @@ library(movielibutils)
 
 This package was created to help users fetch metadata about movies using the TMDB API.
 
-## Functions
-
-**This is currently changing. I am removing the single use case functions in favor a generic wrapper.**
-
-For easier implementation I've decided to built a single function to get the TMDB id, details,
-cast and crew. For each of these functions exists a wrapper function to work with lists.
-
-|single|batch|
-|:---|:---|
-|get_id|id_list|
-|get_credits|cast_crew_list|
-|get_details|details_list|
-|-|get_genres|
-
 ### create_masterlist(wd, convention, api_key)
 
 This is top-level function of this package and should be your go-to in case you need a fast way to get every detail.
@@ -63,22 +49,15 @@ This function returns a dataframe containing TMDB genre ids and their respective
 
 ### get_details(tmdb_id, api_key) 
 
-Looks up the movies details. Returns the following dataframe:
+Looks up the movie details for the supplied TMDB id(s). Returns the following dataframe:
 
 **TODO insert detail table col**
 
-### details_list(id_list, api_key) 
-
-Wraps get_details() to work with lists. 
-
-### get_credits(tmdb_id, api_key) 
-
-Looks up the cast and crew for a given TMDB id. Returns the following dataframe:
-**TODO insert cast and crew table col**
-
 ### cast_crew_list(id_col, api_key) 
 
-Wrapper for get_credits().
+Looks up the cast and crew for the supplied TMDB id(s). Returns the following dataframe:
+
+**TODO insert cast and crew table col**
 
 ## Convention (Naming Conventions)
 
