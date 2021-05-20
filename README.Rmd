@@ -18,24 +18,17 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-movielibutils help to retrieve [TMDB](https://www.themoviedb.org/) metadata for you hard-drive movie library.
-
-## Installation
-
-You can install the released version of movielibutils from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("movielibutils")
-```
+movielibutils helps to retrieve and join [TMDB](https://www.themoviedb.org/) metadata for your analyzing needs!
 
 ## Roadmap
 
-* add sensible tests within the functions as well as unit testing
+* ~~create vignette~~
 
-* create vignette
+* ~~remove functions for 1-length arguments and integrate functionality for wrappers~~
 
 * refactor variable names
 
+* add sensible tests within the functions as well as unit testing
 
 ## Similar packages
 
