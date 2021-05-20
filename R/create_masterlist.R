@@ -15,7 +15,8 @@
 #'
 create_masterlist <- function(wd, convention, api_key) {
 
-  movies <- extract_batch_title_data(wd, convention)
+  # TODO insert wd file scan and extract_names
+  # movies <- extract_batch_title_data(wd, convention)
   movies_id <- id_list(
     movies$title,
     movies$year,

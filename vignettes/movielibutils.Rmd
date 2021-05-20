@@ -20,20 +20,17 @@ library(movielibutils)
 
 ## Introduction
 
-This package was created to help users fetch metadata about movies on their harddrive using the TMDB API.
-
-## Rough Workflow
-
-This package reads your movie folder and tries to get a TMDB id for each. For each TMDB id the script fetches movie metadata, cast and crew and creates one big data.table for you to explore.
+This package was created to help users fetch metadata about movies using the TMDB API.
 
 ## Functions
+
+**This is currently changing. I am removing the single use case functions in favor a generic wrapper.**
 
 For easier implementation I've decided to built a single function to get the TMDB id, details,
 cast and crew. For each of these functions exists a wrapper function to work with lists.
 
 |single|batch|
 |:---|:---|
-|extract_title_data|extract_batch_title_data|
 |get_id|id_list|
 |get_credits|cast_crew_list|
 |get_details|details_list|
@@ -43,81 +40,22 @@ cast and crew. For each of these functions exists a wrapper function to work wit
 
 This is top-level function of this package and should be your go-to in case you need a fast way to get every detail.
 
-**Every movie can have multiple genre_ids and production_companies. These multiply every set of rows so that there can be one master dataframe with all the data.** If you'd like to avoid this, you may use the batch functions for a more granular control.
+**Every movie can have multiple genre_ids and production_companies. These multiply every set of rows so that there can be one master dataframe with all the data.**
 
 The resulting dataframe looks like this. Movie details are prefixed "m_", cast and crew columns are prefixed with "cc_".
 
-> [1] "results.id"                           
- [2] "disc_dir"                             
- [3] "subtitle"                             
- [4] "m_adult"                              
- [5] "m_backdrop_path"                      
- [6] "m_budget"                             
- [7] "m_genres.id"                          
- [8] "m_genres.name"                        
- [9] "m_homepage"                           
-[10] "m_imdb_id"                            
-[11] "m_original_language"                  
-[12] "m_original_title"                     
-[13] "m_overview"                           
-[14] "m_popularity"                         
-[15] "m_poster_path"                        
-[16] "m_production_companies.id"            
-[17] "m_production_companies.logo_path"     
-[18] "m_production_companies.name"          
-[19] "m_production_companies.origin_country"
-[20] "m_production_countries.iso_3166_1"
-[21] "m_production_countries.name"          
-[22] "m_release_date"                       
-[23] "m_revenue"                            
-[24] "m_runtime"                            
-[25] "m_spoken_languages.english_name"      
-[26] "m_spoken_languages.iso_639_1"         
-[27] "m_spoken_languages.name"              
-[28] "m_status"                             
-[29] "m_tagline"                            
-[30] "m_title"                              
-[31] "m_video"                              
-[32] "m_vote_average"                       
-[33] "m_vote_count"                         
-[34] "m_belongs_to_collection.id"           
-[35] "m_belongs_to_collection.name"         
-[36] "m_belongs_to_collection.poster_path"  
-[37] "m_belongs_to_collection.backdrop_path"
-[38] "cc_adult"                             
-[39] "cc_gender"                            
-[40] "cc_id"                                
-[41] "cc_known_for_department"              
-[42] "cc_name"                              
-[43] "cc_original_name"                     
-[44] "cc_popularity"                        
-[45] "cc_profile_path"                      
-[46] "cc_cast_id"                           
-[47] "cc_character"                         
-[48] "cc_credit_id"                         
-[49] "cc_order"                             
-[50] "cc_department"                        
-[51] "cc_job"
+**TODO insert master table col**
 
-### extract_title_data(directory_name, convention)
+### extract_names(name_vector, convention)
 
-This function extracts metadata (title, year, opt. subtitles) according to the chosen convention into a dataframe and returns it. This is only applicable for one directory name. If you want to use this with an entire sub-directory, see extract_batch_title_data.
-
-### extract_batch_title_data(working_directory, convention)
-
-Uses extract_title_data on every sub-directory of the supplied working directory and returns a dataframe with directory name, year and title.
-
-### get_id(title, year, api_key)
-
-Looks up the supplied movies **TMDB ID** using the TMDB API. Supply year for more precise results - otherwise year = NULL is also ok.
-
-get_id returns the most popular TMDB ID if there are more results.
+This function extracts metadata (title, year, opt. subtitles) according to the chosen naming convention into a dataframe and returns it. 
 
 ### id_list(title_col, year_col, id_col, api_key)
 
-Looks up TMDB IDs using get_id and adds an identifier (id_col) for easier joins later on.
+Looks up the supplied movies **TMDB ID** using the TMDB API. Supply year for more precise results - otherwise year = NULL is also ok.
+The id_col parameter adds an user-supplied identifier to the returning dataframe for later joins.
 
-You can use extract_batch_title_data() to extract sufficient metadata to use id_list.
+If multiple matches are found for the parameters the title with the highest popularity is chosen.
 
 ### get_genres(api_key)
 
@@ -127,42 +65,7 @@ This function returns a dataframe containing TMDB genre ids and their respective
 
 Looks up the movies details. Returns the following dataframe:
 
->[1] "adult"                              
- [2] "backdrop_path"                      
- [3] "belongs_to_collection.id"           
- [4] "belongs_to_collection.name"         
- [5] "belongs_to_collection.poster_path"  
- [6] "belongs_to_collection.backdrop_path"
- [7] "budget"                             
- [8] "genres.id"                          
- [9] "genres.name"                        
-[10] "homepage"                           
-[11] "id"                                 
-[12] "imdb_id"                            
-[13] "original_language"                  
-[14] "original_title"                     
-[15] "overview"                           
-[16] "popularity"                         
-[17] "poster_path"                        
-[18] "production_companies.id"            
-[19] "production_companies.logo_path"     
-[20] "production_companies.name"          
-[21] "production_companies.origin_country"
-[22] "production_countries.iso_3166_1"    
-[23] "production_countries.name"          
-[24] "release_date"                       
-[25] "revenue"                            
-[26] "runtime"                            
-[27] "spoken_languages.english_name"      
-[28] "spoken_languages.iso_639_1"         
-[29] "spoken_languages.name"              
-[30] "status"                             
-[31] "tagline"                            
-[32] "title"                              
-[33] "video"                              
-[34] "vote_average"                       
-[35] "vote_count"    
-
+**TODO insert detail table col**
 
 ### details_list(id_list, api_key) 
 
@@ -171,21 +74,7 @@ Wraps get_details() to work with lists.
 ### get_credits(tmdb_id, api_key) 
 
 Looks up the cast and crew for a given TMDB id. Returns the following dataframe:
-
-> [1] "adult"               
- [2] "gender"              
- [3] "id"                  
- [4] "known_for_department"
- [5] "name"                
- [6] "original_name"       
- [7] "popularity"          
- [8] "profile_path"        
- [9] "cast_id"             
-[10] "character"           
-[11] "credit_id"           
-[12] "order"               
-[13] "department"          
-[14] "job"
+**TODO insert cast and crew table col**
 
 ### cast_crew_list(id_col, api_key) 
 
@@ -193,7 +82,7 @@ Wrapper for get_credits().
 
 ## Convention (Naming Conventions)
 
-For extract_title_data and extract_batch_title_data the convention parameter needs to be supplied.
+For extract_names() the convention parameter needs to be supplied.
 Currently there four different conventions supported:
 
 1. "1999 - The Matrix"

@@ -25,6 +25,8 @@ get_credits <- function(tmdb_id, api_key) {
   # debugging
   # tmdb_id = 704
 
+  # TODO tests for tmdb id and api_key
+
   url <- paste0(
     "https://api.themoviedb.org/3/movie/",
     tmdb_id,
