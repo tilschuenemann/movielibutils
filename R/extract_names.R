@@ -91,7 +91,7 @@ extract_names <- function(name_vector, convention) {
         title = title,
         year = year,
         subtitle = subtitle,
-        disc_dir = name_vector[i, ]
+        disc_dir = name_vector[i]
       )
     }
 
