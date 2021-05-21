@@ -3,7 +3,7 @@ Type: Package
 Title: Utilities for Fetching and Analyzing Hard Drive Movies
 Version: 0.1.0
 Author: Til Schünemann
-Maintainer: Til Schünemann <yourself@somewhere.net>
+Maintainer: Til Schünemann <test@test.de>
 Description: Fetch TMDB movie data in bulk for your analyzing needs.
 Imports:
     data.table,
@@ -11,10 +11,10 @@ Imports:
     httr,
     jsonlite,
     progress,
-    stringr,
     tidyselect,
     rlang,
-    stringi
+    stringi,
+    lifecycle
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -25,3 +25,4 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
