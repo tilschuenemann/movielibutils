@@ -146,3 +146,10 @@ test_that("dataframe extraction (1-column) with convention 1 works", {
 })
 
 # add test with multiple column df with no specified error
+
+test_that("convention not 1-4 throws error", {
+  expect_error(extract_names("The Matrix (1999)", 0),
+               "convention id must be between 1 and 4")
+  })
+
+
