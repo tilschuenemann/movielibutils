@@ -6,14 +6,15 @@
 #' @return Dataframe containing directory name, movie year and title, optionally subtitles suffix (based on convention parameter).
 #' @export
 #'
-#' @importFrom progress progress_bar
 #' @importFrom dplyr "%>%"
 #' @importFrom dplyr between
 #' @importFrom dplyr nth
-#' @importFrom stringr str_extract
-#' @importFrom stringr str_extract_all
-#' @importFrom stringr str_length
+#' @importFrom dplyr mutate
 #' @importFrom graphics title
+#' @importFrom stringi stri_sub
+#' @importFrom stringi stri_extract
+#' @importFrom stringi stri_extract_first
+#' @importFrom stringi stri_extract_last
 #'
 #' @examples
 #' extract_names("The Matrix (1999)", 3)
@@ -39,68 +40,28 @@ extract_names <- function(name_vector, convention) {
     stop("supplied name vector is empty")
   }
 
-  # display progress
-  # TODO add message "extracting names"
-  pb <- progress_bar$new(
-    format = "[:bar] :current/:total (:percent) (:eta)",
-    total = j
-  )
+  print("extracting names")
 
-  # create df for return
-  extracted_names <- NULL
+  name_vector <- data.frame(disc_dir = name_vector)
 
-  for (i in 1:j) {
-
-    # extract name based on convention
-    if (convention == 1 || convention == 2) {
-      year <- str_extract(name_vector[i], pattern = "[:digit:]{4}")
-      # TODO 8 is magic number
-      title <- substr(name_vector[i], 8, str_length(name_vector[i]))
-      extracted_name <- data.frame(
-        title = title,
-        year = year,
-        disc_dir = name_vector[i]
-      )
-    } else if (convention == 3) {
-      year <- nth(str_extract_all(name_vector[i], pattern = "[:digit:]{4}", simplify = TRUE), n = -1L)
-      # TODO 7 is magic number
-      title <- substr(name_vector[i], 0, str_length(name_vector[i]) - 7)
-      extracted_name <- data.frame(
-        title = title,
-        year = year,
-        disc_dir = name_vector[i]
-      )
-    } else if (convention == 4) {
-      year <- str_extract_all(name_vector[i], pattern = "[:digit:]{4}", simplify = TRUE) %>%
-        nth(n = -1L) %>%
-        as.integer()
-
-      subtitle <- str_extract_all(name_vector[i],
-        pattern = "[^\\(|\\)|[:space:]][:alnum:]*",
-        simplify = T
-      ) %>%
-        nth(n = -1L)
-
-      # TODO 6 is magic number
-      title <- substr(name_vector[i], 0, str_length(name_vector[i])
-      - str_length(year)
-        - str_length(subtitle)
-        - 6)
-
-      extracted_name <- data.frame(
-        title = title,
-        year = year,
-        subtitle = subtitle,
-        disc_dir = name_vector[i]
-      )
-    }
-
-    extracted_names <- rbind(extracted_names, extracted_name)
-
-    pb$tick()
-  }
-
-  extracted_names$year <- as.integer(extracted_names$year)
+if(convention == 1){
+  extracted_names <- name_vector %>%
+    mutate(year = as.integer(stri_extract(disc_dir, regex="[:digit:]{4}",mode = "first")),
+           title = stri_sub(disc_dir, nchar(year)+nchar(" - "), nchar(disc_dir)))
+} else if (convention == 2){
+  extracted_names <- name_vector %>%
+    mutate(year = as.integer(stri_extract_first(disc_dir, regex="[:digit:]{4}")),
+           title = stri_sub(disc_dir, nchar(year)+nchar("() "), nchar(disc_dir)))
+} else if (convention == 3){
+  extracted_names <- name_vector %>%
+    mutate(year = as.integer(stri_extract_last(disc_dir, regex="[:digit:]{4}")),
+           title = stri_sub(disc_dir, 0, nchar(disc_dir)-nchar(year)-nchar(" ()")))
+} else if (convention == 4){
+  extracted_names <- name_vector %>%
+    mutate(year = as.integer(stri_extract(disc_dir, regex="[:digit:]{4}", mode = "last")),
+           subtitle = stri_extract(disc_dir, regex = "[^\\(|\\)][:alnum:]*", mode = "last"),
+           title = stri_sub(disc_dir, 0, nchar(disc_dir)-nchar(year)-nchar(subtitle)-nchar(" () ()")))
+}
 
   return(extracted_names)
 }
