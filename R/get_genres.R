@@ -18,9 +18,9 @@
 #' get_genres(api_key)
 #' }
 get_genres <- function(api_key) {
-  if (!is.character(api_key) &&
+  if (!is.character(api_key) ||
     length(api_key) != 32) {
-    print("api_key is not a 32-character string")
+    stop("api_key is not a 32-character string")
   }
 
   print("getting genres")
@@ -44,6 +44,8 @@ get_genres <- function(api_key) {
     as.data.frame()
 
   # type conversion
+  # TODO test if type conversion is faster in datatable
+  # TODO maybe skip as.data.frame above and directly convert into data.table
   genres_call$genres.id <- as.integer(genres_call$genres.id)
   genres_call <- data.table(genres_call)
 
