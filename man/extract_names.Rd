@@ -2,7 +2,7 @@
 % Please edit documentation in R/extract_names.R
 \name{extract_names}
 \alias{extract_names}
-\title{Title}
+\title{Extract movie title and year from a vector}
 \usage{
 extract_names(name_vector, convention)
 }
@@ -15,7 +15,7 @@ extract_names(name_vector, convention)
 Dataframe containing directory name, movie year and title, optionally subtitles suffix (based on convention parameter).
 }
 \description{
-Title
+Extract movie title and year from a vector
 }
 \examples{
 extract_names("The Matrix (1999)", 3)

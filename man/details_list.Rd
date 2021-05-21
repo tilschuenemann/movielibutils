@@ -2,7 +2,7 @@
 % Please edit documentation in R/details_list.R
 \name{details_list}
 \alias{details_list}
-\title{Title}
+\title{Retrieve TMDB movie details for a given TMDB id vector}
 \usage{
 details_list(id_list, api_key)
 }
@@ -15,7 +15,7 @@ details_list(id_list, api_key)
 Dataframe containing all TMDB metadata for movies
 }
 \description{
-Title
+Retrieve TMDB movie details for a given TMDB id vector
 }
 \examples{
 \dontrun{

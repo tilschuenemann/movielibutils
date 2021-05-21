@@ -2,7 +2,7 @@
 % Please edit documentation in R/cast_crew_list.R
 \name{cast_crew_list}
 \alias{cast_crew_list}
-\title{Title}
+\title{Retrieve TMDB cast and crew data for a given TMDB id vector.}
 \usage{
 cast_crew_list(id_col, api_key)
 }
@@ -15,7 +15,7 @@ cast_crew_list(id_col, api_key)
 Dataframe containing all TMDB crew and cast data
 }
 \description{
-Title
+Retrieve TMDB cast and crew data for a given TMDB id vector.
 }
 \examples{
 \dontrun{

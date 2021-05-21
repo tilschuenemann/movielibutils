@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_masterlist.R
 \name{create_masterlist}
 \alias{create_masterlist}
-\title{Title}
+\title{Retrieve all relevant movie metadata in a large data.table for a given name vector.}
 \usage{
 create_masterlist(wd, convention, api_key)
 }
@@ -17,5 +17,5 @@ create_masterlist(wd, convention, api_key)
 Extensive dataframe containing directory name, title, year and TMDB metadata for movie as well as cast.
 }
 \description{
-Title
+Retrieve all relevant movie metadata in a large data.table for a given name vector.
 }

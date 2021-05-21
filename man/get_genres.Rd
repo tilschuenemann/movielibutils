@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_genres.R
 \name{get_genres}
 \alias{get_genres}
-\title{Title}
+\title{Get all TMDB genre name and ids.}
 \usage{
 get_genres(api_key)
 }
@@ -13,7 +13,7 @@ get_genres(api_key)
 Dataframe containing all TMDB genre ids and names.
 }
 \description{
-Title
+Get all TMDB genre name and ids.
 }
 \examples{
 \dontrun{
