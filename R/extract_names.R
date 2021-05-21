@@ -1,4 +1,4 @@
-#' Title
+#' Extract movie title and year from a vector
 #'
 #' @param name_vector Name(s) to extract title, year and potentially subtitle from.
 #' @param convention See vignette.

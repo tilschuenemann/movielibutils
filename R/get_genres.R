@@ -1,5 +1,5 @@
 
-#' Title
+#' Get all TMDB genre name and ids.
 #'
 #' @param api_key TMDB api key
 #'

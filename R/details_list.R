@@ -1,5 +1,5 @@
 
-#' Title
+#' Retrieve TMDB movie details for a given TMDB id vector
 #'
 #' @param id_list List of TMDB ids
 #' @param api_key TMDB api_key
