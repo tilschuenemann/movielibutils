@@ -47,11 +47,12 @@ extract_names <- function(name_vector, convention) {
 if(convention == 1){
   extracted_names <- name_vector %>%
     mutate(year = as.integer(stri_extract(disc_dir, regex="[:digit:]{4}",mode = "first")),
-           title = stri_sub(disc_dir, nchar(year)+nchar(" - "), nchar(disc_dir)))
+           title = stri_sub(disc_dir, nchar(year)+nchar(" -  "), nchar(disc_dir)))
 } else if (convention == 2){
+  # TODO why does title need two spaces for subbing?
   extracted_names <- name_vector %>%
     mutate(year = as.integer(stri_extract_first(disc_dir, regex="[:digit:]{4}")),
-           title = stri_sub(disc_dir, nchar(year)+nchar("() "), nchar(disc_dir)))
+           title = stri_sub(disc_dir, nchar(year)+nchar("()  "), nchar(disc_dir)))
 } else if (convention == 3){
   extracted_names <- name_vector %>%
     mutate(year = as.integer(stri_extract_last(disc_dir, regex="[:digit:]{4}")),
