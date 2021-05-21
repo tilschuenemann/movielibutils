@@ -1,4 +1,4 @@
-#' Title
+#' Retrieve TMDB cast and crew data for a given TMDB id vector.
 #'
 #' @param id_col List of TMDB ids
 #' @param api_key TMBD api key
@@ -16,8 +16,8 @@
 #' @importFrom dplyr select
 #' @importFrom dplyr select_all
 #' @importFrom tidyselect starts_with
-#' @importFrom stringr str_replace
-#' @importFrom stringr str_pad
+#' @importFrom stringi stri_replace
+#' @importFrom stringi stri_pad
 #' @importFrom graphics title
 #'
 #' @examples
@@ -65,19 +65,19 @@ cast_crew_list <- function(id_col, api_key) {
   to_int <- c("gender", "id", "cast_id", "order")
 
   for (i in 1:4) {
-    if (to_int[i] %in% colnames(cast_crew_details)) {
-      cast_crew_details[to_int[i]] <-
-        lapply(cast_crew_details[to_int[i]], as.integer)
+    if (to_int[i] %in% colnames(cc_details)) {
+      cc_details[to_int[i]] <-
+        lapply(cc_details[to_int[i]], as.integer)
     }
   }
 
-  if ("popularity" %in% colnames(cast_crew_details)) {
-    cast_crew_details$popularity <-
-      as.integer(str_replace(
-        pattern = "\\.",
+  if ("popularity" %in% colnames(cc_details)) {
+    cc_details$popularity <-
+      as.integer(stri_replace(
+        regex = "\\.",
         replacement = "",
-        str_pad(
-          cast_crew_details$popularity,
+        stri_pad(
+          cc_details$popularity,
           width = 5,
           side = "right",
           pad = "0"
@@ -119,11 +119,11 @@ get_credits <- function(tmdb_id, api_key) {
   # clean colnames
   cast_call <- credits_call %>%
     select(starts_with("cast")) %>%
-    select_all(~ str_replace(pattern = "cast.", replacement = "", .))
+    select_all(~ stri_replace(regex = "cast.", replacement = "", .))
 
   crew_call <- credits_call %>%
     select(starts_with("crew")) %>%
-    select_all(~ str_replace(pattern = "crew.", replacement = "", .))
+    select_all(~ stri_replace(regex = "crew.", replacement = "", .))
 
   # append cast and crew
   cast_crew_details <- bind_rows(cast_call, crew_call)
