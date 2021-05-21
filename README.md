@@ -4,6 +4,9 @@
 # movielibutils
 
 <!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 movielibutils helps to retrieve and join
@@ -16,9 +19,15 @@ movielibutils helps to retrieve and join
 -   ~~remove functions for 1-length arguments and integrate
     functionality for wrappers~~
 
--   refactor variable names
+-   ~~replace stringr with stringi~~
+
+-   ~~add titles to manpages~~
+
+-   refactor variable names and function names
 
 -   add sensible tests within the functions as well as unit testing
+
+-   ~~add lifecycle badge to readme~~
 
 ## Similar packages and differences
 
