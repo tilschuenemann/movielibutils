@@ -1,4 +1,4 @@
-#' Title
+#' Retrieve TMDB ids for given movie title and year
 #'
 #' @param title_col Vector of titles
 #' @param year_col Vector of respective years
@@ -11,17 +11,18 @@
 #' @importFrom progress progress_bar
 #' @importFrom data.table data.table
 #' @importFrom dplyr slice
-#' @importFrom stringr str_replace_all
+#' @importFrom stringi stri_replace_all
 #'
 #' @examples
 #' \dontrun{
 #' id_list("The Matrix", 1999, 1, api_key)
 #'
-#' df <- dataframe(title_col = c("The Matrix", "The Matrix Reloaded"), year_col = c(1999, 2003), id_col = c(1, 2))
+#' df <- dataframe(title_col = c("The Matrix", "The Matrix Reloaded"),
+#'                 year_col = c(1999, 2003), id_col = c(1, 2))
 #'
 #' id_list(df$title_col, df$year_col, df$id_col, api_key)
 #' }
-id_list <- function(title_col, year_col, id_col, api_key) {
+id_list <- function(title_col, year_col = NULL, id_col, api_key) {
   # TODO check for empty or null columns
   if (length(title_col) != length(year_col) ||
     length(title_col) != length(id_col)) {
@@ -100,7 +101,8 @@ get_id <- function(title, year, api_key) {
   # title = "Sodomites"
   # year = 1998
 
-  title <- str_replace_all(title, pattern = "[ ]", replacement = "%20")
+
+  title <- stri_replace_all(title, replacement = "%20", regex = "[ ]")
 
   # build url for request
   if (is.null(year)) {
