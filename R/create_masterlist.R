@@ -1,5 +1,5 @@
 
-#' Title
+#' Retrieve all relevant movie metadata in a large data.table for a given name vector.
 #'
 #' @param wd Directory name containing your movie directories.
 #' @param convention See examples.
@@ -16,11 +16,14 @@
 create_masterlist <- function(wd, convention, api_key) {
 
   # TODO insert wd file scan and extract_names
-  # movies <- extract_batch_title_data(wd, convention)
+  movies <- list.files(wd, recursive = FALSE, full.names = FALSE)
+
+  movies_ex <- extract_names(movies, convention)
+
   movies_id <- id_list(
-    movies$title,
-    movies$year,
-    movies$disc_dir,
+    movies_ex$title,
+    movies_ex$year,
+    movies_ex$disc_dir,
     api_key
   )
 

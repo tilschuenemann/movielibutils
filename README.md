@@ -7,6 +7,9 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test
+coverage](https://codecov.io/gh/tilschuenemann/movielibutils/branch/main/graph/badge.svg)](https://codecov.io/gh/tilschuenemann/movielibutils?branch=main)
+[![R-CMD-check](https://github.com/tilschuenemann/movielibutils/workflows/R-CMD-check/badge.svg)](https://github.com/tilschuenemann/movielibutils/actions)
 <!-- badges: end -->
 
 movielibutils helps to retrieve and join
@@ -28,6 +31,12 @@ movielibutils helps to retrieve and join
 -   add sensible tests within the functions as well as unit testing
 
 -   ~~add lifecycle badge to readme~~
+
+-   fix stri\_replace to behave like str\_replace (1-based indice)
+
+-   add column overview to vignette and readme
+
+-   create data model for master table
 
 ## Similar packages and differences
 

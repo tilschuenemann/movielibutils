@@ -17,8 +17,10 @@
 #' \dontrun{
 #' id_list("The Matrix", 1999, 1, api_key)
 #'
-#' df <- dataframe(title_col = c("The Matrix", "The Matrix Reloaded"),
-#'                 year_col = c(1999, 2003), id_col = c(1, 2))
+#' df <- dataframe(
+#'   title_col = c("The Matrix", "The Matrix Reloaded"),
+#'   year_col = c(1999, 2003), id_col = c(1, 2)
+#' )
 #'
 #' id_list(df$title_col, df$year_col, df$id_col, api_key)
 #' }
@@ -100,7 +102,6 @@ get_id <- function(title, year, api_key) {
   # debugging
   # title = "Sodomites"
   # year = 1998
-
 
   title <- stri_replace_all(title, replacement = "%20", regex = "[ ]")
 

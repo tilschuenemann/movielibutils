@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^R/backup
+^codecov\.yml$
+^\.github$

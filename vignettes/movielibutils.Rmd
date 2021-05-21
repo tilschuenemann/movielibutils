@@ -18,6 +18,9 @@ knitr::opts_chunk$set(
 library(movielibutils)
 ```
 
+<!-- badges: start -->
+<!-- badges: end -->
+
 ## Introduction
 
 This package was created to help users fetch metadata about movies using the TMDB API.
