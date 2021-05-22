@@ -48,27 +48,26 @@ extract_names <- function(name_vector, convention) {
     extracted_names <- name_vector %>%
       mutate(
         year = as.integer(stri_extract(disc_dir, regex = "[:digit:]{4}", mode = "first")),
-        title = stri_sub(disc_dir, nchar(year) + nchar(" -  "), nchar(disc_dir))
+        title = stri_sub(disc_dir, nchar(as.character(year)) + nchar(" - ")+1, nchar(disc_dir))
       )
   } else if (convention == 2) {
-    # TODO why does title need two spaces for subbing?
     extracted_names <- name_vector %>%
       mutate(
         year = as.integer(stri_extract_first(disc_dir, regex = "[:digit:]{4}")),
-        title = stri_sub(disc_dir, nchar(year) + nchar("()  "), nchar(disc_dir))
+        title = stri_sub(disc_dir, nchar(as.character(year)) + nchar("() ")+1, nchar(disc_dir))
       )
   } else if (convention == 3) {
     extracted_names <- name_vector %>%
       mutate(
         year = as.integer(stri_extract_last(disc_dir, regex = "[:digit:]{4}")),
-        title = stri_sub(disc_dir, 0, nchar(disc_dir) - nchar(year) - nchar(" ()"))
+        title = stri_sub(disc_dir, 0, nchar(disc_dir) - nchar(as.character(year)) - nchar(" ()"))
       )
   } else if (convention == 4) {
     extracted_names <- name_vector %>%
       mutate(
         year = as.integer(stri_extract(disc_dir, regex = "[:digit:]{4}", mode = "last")),
         subtitle = stri_extract(disc_dir, regex = "[^\\(|\\)][:alnum:]*", mode = "last"),
-        title = stri_sub(disc_dir, 0, nchar(disc_dir) - nchar(year) - nchar(subtitle) - nchar(" () ()"))
+        title = stri_sub(disc_dir, 0, nchar(disc_dir) - nchar(as.character(year)) - nchar(subtitle) - nchar(" () ()"))
       )
   }
 
