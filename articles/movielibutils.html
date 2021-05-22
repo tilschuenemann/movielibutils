@@ -75,8 +75,6 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">movielibutils</span><span class="op">)</span></code></pre></div>
-<!-- badges: start -->
-<!-- badges: end -->
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
@@ -87,7 +85,56 @@
 <p>This is top-level function of this package and should be your go-to in case you need a fast way to get every detail.</p>
 <p><strong>Every movie can have multiple genre_ids and production_companies. These multiply every set of rows so that there can be one master dataframe with all the data.</strong></p>
 <p>The resulting dataframe looks like this. Movie details are prefixed “m_”, cast and crew columns are prefixed with “cc_”.</p>
-<p><strong>TODO insert master table col</strong></p>
+<pre><code> [1] "results.id"
+ [2] "disc_dir"
+ [3] "m_adult"
+ [4] "m_backdrop_path"
+ [5] "m_budget"
+ [6] "m_genres.id"
+ [7] "m_genres.name"
+ [8] "m_homepage"
+ [9] "m_imdb_id"
+[10] "m_original_language"
+[11] "m_original_title"
+[12] "m_overview"
+[13] "m_popularity"
+[14] "m_poster_path"
+[15] "m_production_companies.id"
+[16] "m_production_companies.logo_path"
+[17] "m_production_companies.name"
+[18] "m_production_companies.origin_country"
+[19] "m_production_countries.iso_3166_1"
+[20] "m_production_countries.name"
+[21] "m_release_date"
+[22] "m_revenue"
+[23] "m_runtime"
+[24] "m_spoken_languages.english_name"
+[25] "m_spoken_languages.iso_639_1"
+[26] "m_spoken_languages.name"
+[27] "m_status"
+[28] "m_tagline"
+[29] "m_title"
+[30] "m_video"
+[31] "m_vote_average"
+[32] "m_vote_count"
+[33] "m_belongs_to_collection.id"
+[34] "m_belongs_to_collection.name"
+[35] "m_belongs_to_collection.poster_path"
+[36] "m_belongs_to_collection.backdrop_path"
+[37] "cc_adult"
+[38] "cc_gender"
+[39] "cc_id"
+[40] "cc_known_for_department"
+[41] "cc_name"
+[42] "cc_original_name"
+[43] "cc_popularity"
+[44] "cc_profile_path"
+[45] "cc_cast_id"
+[46] "cc_character"
+[47] "cc_credit_id"
+[48] "cc_order"
+[49] "cc_department"
+[50] "cc_job"</code></pre>
 </div>
 <div id="extract_namesname_vector-convention" class="section level3">
 <h3 class="hasAnchor">
@@ -99,23 +146,75 @@
 <a href="#id_listtitle_col-year_col-id_col-api_key" class="anchor"></a>id_list(title_col, year_col, id_col, api_key)</h3>
 <p>Looks up the supplied movies <strong>TMDB ID</strong> using the TMDB API. Supply year for more precise results - otherwise year = NULL is also ok. The id_col parameter adds an user-supplied identifier to the returning dataframe for later joins.</p>
 <p>If multiple matches are found for the parameters the title with the highest popularity is chosen.</p>
+<pre><code>[1] "results.id"
+[2] "disc_dir"  </code></pre>
 </div>
 <div id="get_genresapi_key" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get_genresapi_key" class="anchor"></a>get_genres(api_key)</h3>
 <p>This function returns a dataframe containing TMDB genre ids and their respective name.</p>
+<pre><code>[1] "genres.id"
+[2] "genres.name"</code></pre>
 </div>
 <div id="get_detailstmdb_id-api_key" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get_detailstmdb_id-api_key" class="anchor"></a>get_details(tmdb_id, api_key)</h3>
 <p>Looks up the movie details for the supplied TMDB id(s). Returns the following dataframe:</p>
-<p><strong>TODO insert detail table col</strong></p>
+<pre><code> [1] "m_adult"
+ [2] "m_backdrop_path"
+ [3] "m_budget"
+ [4] "m_genres.id"
+ [5] "m_genres.name"
+ [6] "m_homepage"
+ [7] "m_id"
+ [8] "m_imdb_id"
+ [9] "m_original_language"
+[10] "m_original_title"
+[11] "m_overview"
+[12] "m_popularity"
+[13] "m_poster_path"
+[14] "m_production_companies.id"
+[15] "m_production_companies.logo_path"
+[16] "m_production_companies.name"
+[17] "m_production_companies.origin_country"
+[18] "m_production_countries.iso_3166_1"
+[19] "m_production_countries.name"
+[20] "m_release_date"
+[21] "m_revenue"
+[22] "m_runtime"
+[23] "m_spoken_languages.english_name"
+[24] "m_spoken_languages.iso_639_1"
+[25] "m_spoken_languages.name"
+[26] "m_status"
+[27] "m_tagline"
+[28] "m_title"
+[29] "m_video"
+[30] "m_vote_average"
+[31] "m_vote_count"
+[32] "m_belongs_to_collection.id"
+[33] "m_belongs_to_collection.name"
+[34] "m_belongs_to_collection.poster_path"
+[35] "m_belongs_to_collection.backdrop_path"</code></pre>
 </div>
 <div id="cast_crew_listid_col-api_key" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cast_crew_listid_col-api_key" class="anchor"></a>cast_crew_list(id_col, api_key)</h3>
 <p>Looks up the cast and crew for the supplied TMDB id(s). Returns the following dataframe:</p>
-<p><strong>TODO insert cast and crew table col</strong></p>
+<pre><code>[1] "cc_adult"
+[2] "cc_gender"
+[3] "cc_id"
+[4] "cc_known_for_department"
+[5] "cc_name"
+[6] "cc_original_name"
+[7] "cc_popularity"
+[8] "cc_profile_path"
+[9] "cc_cast_id"
+[10] "cc_character"
+[11] "cc_credit_id"
+[12] "cc_order"
+[13] "cc_department"
+[14] "cc_job"
+[15] "cc_results.id"</code></pre>
 </div>
 </div>
 <div id="convention-naming-conventions" class="section level2">
