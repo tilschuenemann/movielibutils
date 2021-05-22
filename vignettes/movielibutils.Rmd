@@ -17,10 +17,6 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(movielibutils)
 ```
-
-<!-- badges: start -->
-<!-- badges: end -->
-
 ## Introduction
 
 This package was created to help users fetch metadata about movies using the TMDB API.
@@ -33,7 +29,58 @@ This is top-level function of this package and should be your go-to in case you 
 
 The resulting dataframe looks like this. Movie details are prefixed "m_", cast and crew columns are prefixed with "cc_".
 
-**TODO insert master table col**
+```
+ [1] "results.id"
+ [2] "disc_dir"
+ [3] "m_adult"
+ [4] "m_backdrop_path"
+ [5] "m_budget"
+ [6] "m_genres.id"
+ [7] "m_genres.name"
+ [8] "m_homepage"
+ [9] "m_imdb_id"
+[10] "m_original_language"
+[11] "m_original_title"
+[12] "m_overview"
+[13] "m_popularity"
+[14] "m_poster_path"
+[15] "m_production_companies.id"
+[16] "m_production_companies.logo_path"
+[17] "m_production_companies.name"
+[18] "m_production_companies.origin_country"
+[19] "m_production_countries.iso_3166_1"
+[20] "m_production_countries.name"
+[21] "m_release_date"
+[22] "m_revenue"
+[23] "m_runtime"
+[24] "m_spoken_languages.english_name"
+[25] "m_spoken_languages.iso_639_1"
+[26] "m_spoken_languages.name"
+[27] "m_status"
+[28] "m_tagline"
+[29] "m_title"
+[30] "m_video"
+[31] "m_vote_average"
+[32] "m_vote_count"
+[33] "m_belongs_to_collection.id"
+[34] "m_belongs_to_collection.name"
+[35] "m_belongs_to_collection.poster_path"
+[36] "m_belongs_to_collection.backdrop_path"
+[37] "cc_adult"
+[38] "cc_gender"
+[39] "cc_id"
+[40] "cc_known_for_department"
+[41] "cc_name"
+[42] "cc_original_name"
+[43] "cc_popularity"
+[44] "cc_profile_path"
+[45] "cc_cast_id"
+[46] "cc_character"
+[47] "cc_credit_id"
+[48] "cc_order"
+[49] "cc_department"
+[50] "cc_job"
+```
 
 ### extract_names(name_vector, convention)
 
@@ -46,21 +93,82 @@ The id_col parameter adds an user-supplied identifier to the returning dataframe
 
 If multiple matches are found for the parameters the title with the highest popularity is chosen.
 
+```
+[1] "results.id"
+[2] "disc_dir"  
+```
+
 ### get_genres(api_key)
 
 This function returns a dataframe containing TMDB genre ids and their respective name.
+```
+[1] "genres.id"
+[2] "genres.name"
+```
 
 ### get_details(tmdb_id, api_key) 
 
 Looks up the movie details for the supplied TMDB id(s). Returns the following dataframe:
 
-**TODO insert detail table col**
+```
+ [1] "m_adult"
+ [2] "m_backdrop_path"
+ [3] "m_budget"
+ [4] "m_genres.id"
+ [5] "m_genres.name"
+ [6] "m_homepage"
+ [7] "m_id"
+ [8] "m_imdb_id"
+ [9] "m_original_language"
+[10] "m_original_title"
+[11] "m_overview"
+[12] "m_popularity"
+[13] "m_poster_path"
+[14] "m_production_companies.id"
+[15] "m_production_companies.logo_path"
+[16] "m_production_companies.name"
+[17] "m_production_companies.origin_country"
+[18] "m_production_countries.iso_3166_1"
+[19] "m_production_countries.name"
+[20] "m_release_date"
+[21] "m_revenue"
+[22] "m_runtime"
+[23] "m_spoken_languages.english_name"
+[24] "m_spoken_languages.iso_639_1"
+[25] "m_spoken_languages.name"
+[26] "m_status"
+[27] "m_tagline"
+[28] "m_title"
+[29] "m_video"
+[30] "m_vote_average"
+[31] "m_vote_count"
+[32] "m_belongs_to_collection.id"
+[33] "m_belongs_to_collection.name"
+[34] "m_belongs_to_collection.poster_path"
+[35] "m_belongs_to_collection.backdrop_path"
+```
 
 ### cast_crew_list(id_col, api_key) 
 
 Looks up the cast and crew for the supplied TMDB id(s). Returns the following dataframe:
 
-**TODO insert cast and crew table col**
+```
+[1] "cc_adult"
+[2] "cc_gender"
+[3] "cc_id"
+[4] "cc_known_for_department"
+[5] "cc_name"
+[6] "cc_original_name"
+[7] "cc_popularity"
+[8] "cc_profile_path"
+[9] "cc_cast_id"
+[10] "cc_character"
+[11] "cc_credit_id"
+[12] "cc_order"
+[13] "cc_department"
+[14] "cc_job"
+[15] "cc_results.id"
+```
 
 ## Convention (Naming Conventions)
 

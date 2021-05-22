@@ -39,10 +39,9 @@ movielibutils helps to retrieve and join [TMDB](https://www.themoviedb.org/) met
 
 * ~~add lifecycle badge to readme~~
 
+* ~~fix stri_sub to behave like str_replace (1-based indice)~~
 
-* fix stri_replace to behave like str_replace (1-based indice)
-
-* add column overview to vignette and readme
+* ~~add column overview to vignette and readme~~
 
 * create data model for master table
 

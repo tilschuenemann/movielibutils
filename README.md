@@ -32,9 +32,9 @@ movielibutils helps to retrieve and join
 
 -   ~~add lifecycle badge to readme~~
 
--   fix stri\_replace to behave like str\_replace (1-based indice)
+-   ~~fix stri\_sub to behave like str\_replace (1-based indice)~~
 
--   add column overview to vignette and readme
+-   ~~add column overview to vignette and readme~~
 
 -   create data model for master table
 
