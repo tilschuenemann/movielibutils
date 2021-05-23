@@ -152,4 +152,12 @@ test_that("convention not 1-4 throws error", {
                "convention id must be between 1 and 4")
   })
 
+test_that("multiple column df with no specified column as argument", {
+  df <- data.frame(name = "The Matrix (1999)",
+                         id = 1L)
+
+  expect_error(extract_names(df,3),
+               "please specify which column to read names from")
+})
+
 

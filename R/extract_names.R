@@ -36,8 +36,6 @@ extract_names <- function(name_vector, convention) {
 
   if (!between(convention, 1, 4) && !is.integer(convention)) {
     stop("convention id must be between 1 and 4")
-  } else if (length(j) == 0) {
-    stop("supplied name vector is empty")
   }
 
   print("extracting names")
